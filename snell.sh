@@ -5,7 +5,7 @@ CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
 apt-get install unzip -y
 cd ~/
-wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/v3.0.0b2/snell-server-v3.0.0b2-linux-amd64.zip
+wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/v3.0.0rc/snell-server-v3.0.0-linux-amd64.zip
 unzip -o snell.zip
 rm -f snell.zip
 chmod +x snell-server
@@ -22,7 +22,7 @@ if [ -f ${CONF} ]; then
   mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
-  echo "listen = 0.0.0.0:8443" >>${CONF}
+  echo "listen = ::0:8443" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
   echo "obfs = tls" >>${CONF}
 fi
