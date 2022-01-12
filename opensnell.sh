@@ -30,7 +30,7 @@ fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
   systemctl daemon-reload
-  systemctl restart snell
+  systemctl restart opensnell
 else
   echo "Generating new service..."
   echo "[Unit]" >>${SYSTEMD}
