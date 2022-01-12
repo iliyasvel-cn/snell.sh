@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-CONF="/etc/opensnell/snell-server.conf"
+CONF="/etc/opensnell/opensnell-server.conf"
 SYSTEMD="/etc/systemd/system/opensnell.service"
 apt-get install unzip -y
 cd ~/
@@ -40,7 +40,7 @@ else
   echo "[Service]" >>${SYSTEMD}
   echo "Type=simple" >>${SYSTEMD}
   echo "LimitNOFILE=32768" >>${SYSTEMD}
-  echo "ExecStart=/usr/local/bin/opensnell-server -c /etc/opensnell/snell-server.conf" >>${SYSTEMD}
+  echo "ExecStart=/usr/local/bin/opensnell-server -c /etc/opensnell/opensnell-server.conf" >>${SYSTEMD}
   echo "" >>${SYSTEMD}
   echo "[Install]" >>${SYSTEMD}
   echo "WantedBy=multi-user.target" >>${SYSTEMD}
