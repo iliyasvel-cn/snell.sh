@@ -5,7 +5,7 @@ CONF="/etc/opensnell/opensnell-server.conf"
 SYSTEMD="/etc/systemd/system/opensnell.service"
 apt-get install unzip -y
 cd ~/
-wget --no-check-certificate -O opensnell.zip https://github.com/icpz/open-snell/releases/download/v3.0.0-beta/snell-server-linux-amd64.zip
+wget --no-check-certificate -O opensnell.zip https://github.com/icpz/open-snell/releases/download/v3.0.0/snell-server-linux-amd64.zip
 unzip -o opensnell.zip
 rm -f opensnell.zip
 mv snell-server opensnell-server
