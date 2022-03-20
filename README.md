@@ -1,6 +1,6 @@
 # 此脚本仅用于远程连接家中局域网内机器，请勿用于任何非法行为！
 ## 适用于64位Linux系统。
-## 运行完毕后屏幕显示psk，默认端口号8443
+## 运行完毕后屏幕显示psk，默认端口号60000
 # 请使用root用户运行
 # 建议使用docker
 ## https://github.com/primovist/snell-docker
