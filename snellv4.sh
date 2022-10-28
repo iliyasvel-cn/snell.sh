@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/local/bin:/usr/local/sbin:~/bin
 export PATH
-CONF="/etc/snellv4/snellv4-server.conf"
-SYSTEMD="/etc/systemd/system/snellv4.service"
+CONF="/etc/snell/snell-server.conf"
+SYSTEMD="/etc/systemd/system/snell.service"
 apt-get install unzip -y
 cd ~/
-wget --no-check-certificate -O snellv4.zip https://dl.nssurge.com/snell/snell-server-v4.0.0-linux-amd64.zip
-unzip -o snellv4.zip
-rm -f snellv4.zip
-chmod +x snellv4-server
-mv -f snellv4-server /usr/local/bin/
+wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-server-v4.0.0-linux-amd64.zip
+unzip -o snell.zip
+rm -f snell.zip
+chmod +x snell-server
+mv -f snell-server /usr/local/bin/
 if [ -f ${CONF} ]; then
   echo "Found existing config..."
   else
@@ -19,7 +19,7 @@ if [ -f ${CONF} ]; then
   else
     echo "Using predefined PSK: ${PSK}"
   fi
-  mkdir /etc/snellv4/
+  mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
   echo "listen = ::0:65500" >>${CONF}
@@ -29,7 +29,7 @@ fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
   systemctl daemon-reload
-  systemctl restart snellv4
+  systemctl restart snell
 else
   echo "Generating new service..."
   echo "[Unit]" >>${SYSTEMD}
@@ -39,11 +39,11 @@ else
   echo "[Service]" >>${SYSTEMD}
   echo "Type=simple" >>${SYSTEMD}
   echo "LimitNOFILE=32768" >>${SYSTEMD}
-  echo "ExecStart=/usr/local/bin/snellv4-server -c /etc/snellv4/snellv4-server.conf" >>${SYSTEMD}
+  echo "ExecStart=/usr/local/bin/snell-server -c /etc/snell/snell-server.conf" >>${SYSTEMD}
   echo "" >>${SYSTEMD}
   echo "[Install]" >>${SYSTEMD}
   echo "WantedBy=multi-user.target" >>${SYSTEMD}
   systemctl daemon-reload
-  systemctl enable snellv4
-  systemctl start snellv4
+  systemctl enable snell
+  systemctl start snell
 fi
