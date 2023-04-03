@@ -5,7 +5,7 @@ CONF="/etc/snell/snell-server.conf"
 SYSTEMD="/etc/systemd/system/snell.service"
 yum install unzip -y
 cd ~/
-wget --no-check-certificate -O snell.zip https://github.com/surge-networks/snell/releases/download/v3.0.1/snell-server-v3.0.1-linux-amd64.zip
+wget --no-check-certificate -O snell.zip https://dl.nssurge.com/snell/snell-server-v4.0.1-linux-amd64.zip
 unzip -o snell.zip
 rm -f snell.zip
 chmod +x snell-server
@@ -22,9 +22,8 @@ if [ -f ${CONF} ]; then
   mkdir /etc/snell/
   echo "Generating new config..."
   echo "[snell-server]" >>${CONF}
-  echo "listen = ::0:60000" >>${CONF}
+  echo "listen = ::0:65500" >>${CONF}
   echo "psk = ${PSK}" >>${CONF}
-  echo "obfs = tls" >>${CONF}
 fi
 if [ -f ${SYSTEMD} ]; then
   echo "Found existing service..."
